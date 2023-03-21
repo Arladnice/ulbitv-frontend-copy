@@ -4,7 +4,7 @@ import { IStateSchema } from "app/providers/StoreProvider";
 
 import { TActionCreatorType } from "./interfaces";
 
-jest.mock("axios");
+// jest.mock("axios");
 
 export class TestAsyncThunk<Return, Arg, Rejected> {
 	actionCreator: TActionCreatorType<Return, Arg, Rejected>;
@@ -21,6 +21,7 @@ export class TestAsyncThunk<Return, Arg, Rejected> {
 		this.actionCreator = actionCreator;
 		this.dispatch = jest.fn();
 		this.getState = jest.fn();
+
 		this.api = jest.mocked(axios);
 		this.navigate = jest.fn();
 	}
@@ -31,6 +32,7 @@ export class TestAsyncThunk<Return, Arg, Rejected> {
 			api: this.api,
 			navigate: this.navigate,
 		});
+
 		return result;
 	}
 }

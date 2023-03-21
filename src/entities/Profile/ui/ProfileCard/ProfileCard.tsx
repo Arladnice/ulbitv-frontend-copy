@@ -1,30 +1,50 @@
 import { ReactElement } from "react";
-import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
-import { Button, EButtonTheme, Text } from "shared/ui";
-
-import { getProfileData } from "../../model/selectors/getProfileData";
-import { getProfileError } from "../../model/selectors/getProfileError";
-import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading";
+import { ETextAlign, ETextTheme, Loader, Text } from "shared/ui";
 
 import { IProfileCardProps } from "./interfaces";
 import styles from "./ProfileCard.module.scss";
 
-const ProfileCard = ({ className = "" }: IProfileCardProps): ReactElement => {
-	const data = useSelector(getProfileData);
-	const error = useSelector(getProfileError);
-	const isLoading = useSelector(getProfileIsLoading);
+const ProfileCard = ({
+	className = "",
+	data,
+	error,
+	isLoading,
+}: IProfileCardProps): ReactElement => {
+	if (isLoading) {
+		return (
+			<div
+				className={classNames(styles.profileCard, {}, [
+					className,
+					styles.loading,
+				])}
+			>
+				<Loader />
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div
+				className={classNames(styles.profileCard, {}, [
+					className,
+					styles.error,
+				])}
+			>
+				<Text
+					title="Произошла ошибка при загрузке профиля"
+					text="Попробуйте обновить страницу"
+					theme={ETextTheme.Error}
+					align={ETextAlign.Center}
+				/>
+			</div>
+		);
+	}
 
 	return (
 		<div className={classNames(styles.profileCard, {}, [className])}>
-			<div className={styles.header}>
-				<Text title="Профиль" />
-				<Button theme={EButtonTheme.Outline} className={styles.editButton}>
-					Редактировать
-				</Button>
-			</div>
-
 			<div className={styles.data}>
 				<input
 					type="text"

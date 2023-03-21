@@ -1,25 +1,35 @@
 import { memo, ReactElement, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import {
 	fetchProfileData,
+	getProfileData,
+	getProfileError,
+	getProfileIsLoading,
 	ProfileCard,
 	profileReducer,
 } from "entities/Profile";
-import { useAppDispatch } from "shared/hooks/useAppDispatch";
 
+import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import {
 	TReducersList,
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
+
+import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
 const reducers: TReducersList = {
 	profile: profileReducer,
 };
 
 const ProfilePage = memo((): ReactElement => {
+	useDynamicReducersLoader({ reducers, removeAfterUnmount: true });
+
 	const dispatch = useAppDispatch();
 
-	useDynamicReducersLoader({ reducers, removeAfterUnmount: true });
+	const data = useSelector(getProfileData);
+	const error = useSelector(getProfileError);
+	const isLoading = useSelector(getProfileIsLoading);
 
 	useEffect(() => {
 		dispatch(fetchProfileData());
@@ -27,7 +37,8 @@ const ProfilePage = memo((): ReactElement => {
 
 	return (
 		<div>
-			<ProfileCard />
+			<ProfilePageHeader />
+			<ProfileCard data={data} isLoading={isLoading} error={error} />
 		</div>
 	);
 });

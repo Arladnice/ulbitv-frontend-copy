@@ -7,14 +7,18 @@
 	display: flex;
 }
 
-.editButton {
-	margin-left: auto;
-}
-
 .data {
-	margin-top: 30px;
+	// data
 }
 
 input {
 	margin-top: 10px;
+}
+
+.error,
+.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
 }

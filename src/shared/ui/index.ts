@@ -9,4 +9,4 @@ export { Modal } from "./Modal/Modal";
 export { Portal } from "./Portal/Portal";
 export { Input } from "./Input/Input";
 export { Text } from "./Text/Text";
-export { ETextTheme } from "./Text/interfaces";
+export { ETextTheme, ETextAlign } from "./Text/interfaces";
