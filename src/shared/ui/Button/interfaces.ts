@@ -4,6 +4,7 @@ export enum EButtonTheme {
 	Clear = "clear",
 	ClearInverted = "clearInverted",
 	Outline = "outline",
+	OutlineRed = "outline_red",
 	Background = "background",
 	BackgroundInverted = "backgroundInverted",
 }

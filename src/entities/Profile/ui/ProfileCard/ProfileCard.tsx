@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 import { classNames } from "shared/lib";
-import { ETextAlign, ETextTheme, Loader, Text } from "shared/ui";
+import { ETextAlign, ETextTheme, Input, Loader, Text } from "shared/ui";
 
 import { IProfileCardProps } from "./interfaces";
 import styles from "./ProfileCard.module.scss";
@@ -11,6 +11,13 @@ const ProfileCard = ({
 	data,
 	error,
 	isLoading,
+	readonly,
+	onChangeFirstName,
+	onChangeLastName,
+	onChangeCity,
+	onChangeAge,
+	onChangeAvatar,
+	onChangeUsername,
 }: IProfileCardProps): ReactElement => {
 	if (isLoading) {
 		return (
@@ -46,17 +53,57 @@ const ProfileCard = ({
 	return (
 		<div className={classNames(styles.profileCard, {}, [className])}>
 			<div className={styles.data}>
-				<input
+				{data?.avatar && (
+					<img src={data?.avatar} alt="аватар" width={100} height={100} />
+				)}
+
+				<Input
 					type="text"
 					value={data?.first}
 					placeholder="Ваше имя"
 					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeFirstName}
 				/>
-				<input
+				<Input
 					type="text"
 					value={data?.lastname}
 					placeholder="Ваша фамилия"
 					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeLastName}
+				/>
+				<Input
+					type="number"
+					value={data?.age}
+					placeholder="Ваш возраст"
+					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeAge}
+				/>
+				<Input
+					type="text"
+					value={data?.city}
+					placeholder="Ваш город"
+					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeCity}
+				/>
+				<Input
+					type="number"
+					value={data?.username}
+					placeholder="Ваше имя пользователя"
+					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeUsername}
+				/>
+				<Input
+					type="text"
+					value={data?.avatar}
+					placeholder="Ссылка на ваш аватар"
+					className={styles.input}
+					readonly={readonly}
+					onChange={onChangeAvatar}
 				/>
 			</div>
 		</div>

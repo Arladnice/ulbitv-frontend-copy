@@ -1,11 +1,13 @@
-import { memo, ReactElement, useEffect } from "react";
+import { memo, ReactElement, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import {
 	fetchProfileData,
-	getProfileData,
 	getProfileError,
+	getProfileForm,
 	getProfileIsLoading,
+	getProfileReadonly,
+	profileActions,
 	ProfileCard,
 	profileReducer,
 } from "entities/Profile";
@@ -27,18 +29,96 @@ const ProfilePage = memo((): ReactElement => {
 
 	const dispatch = useAppDispatch();
 
-	const data = useSelector(getProfileData);
+	const formData = useSelector(getProfileForm);
 	const error = useSelector(getProfileError);
 	const isLoading = useSelector(getProfileIsLoading);
+	const readonly = useSelector(getProfileReadonly);
 
 	useEffect(() => {
 		dispatch(fetchProfileData());
 	}, [dispatch]);
 
+	const onChangeFirstName = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					first: value,
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeLastName = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					lastname: value,
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeAge = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					age: Number(value),
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeCity = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					city: value,
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeAvatar = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					avatar: value,
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeUsername = useCallback(
+		(value: string = "") => {
+			dispatch(
+				profileActions.updateProfile({
+					username: value,
+				})
+			);
+		},
+		[dispatch]
+	);
+
 	return (
 		<div>
 			<ProfilePageHeader />
-			<ProfileCard data={data} isLoading={isLoading} error={error} />
+			<ProfileCard
+				data={formData}
+				isLoading={isLoading}
+				error={error}
+				readonly={readonly}
+				onChangeFirstName={onChangeFirstName}
+				onChangeLastName={onChangeLastName}
+				onChangeAge={onChangeAge}
+				onChangeCity={onChangeCity}
+				onChangeAvatar={onChangeAvatar}
+				onChangeUsername={onChangeUsername}
+			/>
 		</div>
 	);
 });

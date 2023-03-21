@@ -5,4 +5,11 @@ export interface IProfileCardProps {
 	data?: IProfile;
 	isLoading?: boolean;
 	error?: string;
+	readonly?: boolean;
+	onChangeFirstName?: (value: string) => void;
+	onChangeLastName?: (value: string) => void;
+	onChangeCity?: (value: string) => void;
+	onChangeAge?: (value: string) => void;
+	onChangeUsername?: (value: string) => void;
+	onChangeAvatar?: (value: string) => void;
 }
