@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 
 import { classNames } from "shared/lib";
-import { ETextAlign, ETextTheme, Input, Loader, Text } from "shared/ui";
+import { Avatar, ETextAlign, ETextTheme, Input, Loader, Text } from "shared/ui";
 
 import { IProfileCardProps } from "./interfaces";
 import styles from "./ProfileCard.module.scss";
@@ -50,11 +50,17 @@ const ProfileCard = ({
 		);
 	}
 
+	const mods: Record<string, boolean> = {
+		[styles.editing]: !readonly,
+	};
+
 	return (
-		<div className={classNames(styles.profileCard, {}, [className])}>
+		<div className={classNames(styles.profileCard, mods, [className])}>
 			<div className={styles.data}>
 				{data?.avatar && (
-					<img src={data?.avatar} alt="аватар" width={100} height={100} />
+					<div className={styles.avatarWrapper}>
+						<Avatar src={data?.avatar} size={100} />
+					</div>
 				)}
 
 				<Input

@@ -8,5 +8,6 @@ export { Loader } from "./Loader/Loader";
 export { Modal } from "./Modal/Modal";
 export { Portal } from "./Portal/Portal";
 export { Input } from "./Input/Input";
+export { Avatar } from "./Avatar/Avatar";
 export { Text } from "./Text/Text";
 export { ETextTheme, ETextAlign } from "./Text/interfaces";
