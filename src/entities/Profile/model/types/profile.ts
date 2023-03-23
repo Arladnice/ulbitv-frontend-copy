@@ -1,6 +1,13 @@
 import { ECountry } from "entities/Country";
 import { ECurrency } from "entities/Currency";
 
+export enum EValidateProfileError {
+	IncorrectUserData = "IncorrectUserData",
+	IncorrectAge = "IncorrectAge",
+	NoData = "NoData",
+	ServerError = "ServerError",
+}
+
 export interface IProfile {
 	first?: string;
 	lastname?: string;
@@ -18,4 +25,5 @@ export interface IProfileSchema {
 	error?: string;
 	readonly: boolean;
 	form?: IProfile;
+	validateError?: EValidateProfileError[];
 }

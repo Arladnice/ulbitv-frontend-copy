@@ -7,6 +7,7 @@ import {
 	getProfileForm,
 	getProfileIsLoading,
 	getProfileReadonly,
+	getProfileValidateErrors,
 	profileActions,
 	ProfileCard,
 	profileReducer,
@@ -20,6 +21,7 @@ import {
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
 
+import { ETextTheme, Text } from "shared/ui";
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
 const reducers: TReducersList = {
@@ -35,6 +37,7 @@ const ProfilePage = memo((): ReactElement => {
 	const error = useSelector(getProfileError);
 	const isLoading = useSelector(getProfileIsLoading);
 	const readonly = useSelector(getProfileReadonly);
+	const errors = useSelector(getProfileValidateErrors);
 
 	useEffect(() => {
 		dispatch(fetchProfileData());
@@ -131,6 +134,11 @@ const ProfilePage = memo((): ReactElement => {
 	return (
 		<div>
 			<ProfilePageHeader />
+
+			{errors.length
+				? errors.map((e) => <Text key={e} theme={ETextTheme.Error} text={e} />)
+				: null}
+
 			<ProfileCard
 				data={formData}
 				isLoading={isLoading}
