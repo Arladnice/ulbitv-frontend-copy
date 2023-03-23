@@ -10,4 +10,5 @@ export { Portal } from "./Portal/Portal";
 export { Input } from "./Input/Input";
 export { Avatar } from "./Avatar/Avatar";
 export { Text } from "./Text/Text";
+export { Select } from "./Select/Select";
 export { ETextTheme, ETextAlign } from "./Text/interfaces";

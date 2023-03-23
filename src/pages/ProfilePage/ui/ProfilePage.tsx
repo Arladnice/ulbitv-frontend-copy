@@ -11,6 +11,8 @@ import {
 	ProfileCard,
 	profileReducer,
 } from "entities/Profile";
+import { ECurrency } from "entities/Currency";
+import { ECountry } from "entities/Country";
 
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import {
@@ -104,6 +106,28 @@ const ProfilePage = memo((): ReactElement => {
 		[dispatch]
 	);
 
+	const onChangeCountry = useCallback(
+		(country: ECountry) => {
+			dispatch(
+				profileActions.updateProfile({
+					country,
+				})
+			);
+		},
+		[dispatch]
+	);
+
+	const onChangeCurrency = useCallback(
+		(currency: ECurrency) => {
+			dispatch(
+				profileActions.updateProfile({
+					currency,
+				})
+			);
+		},
+		[dispatch]
+	);
+
 	return (
 		<div>
 			<ProfilePageHeader />
@@ -118,6 +142,8 @@ const ProfilePage = memo((): ReactElement => {
 				onChangeCity={onChangeCity}
 				onChangeAvatar={onChangeAvatar}
 				onChangeUsername={onChangeUsername}
+				onChangeCountry={onChangeCountry}
+				onChangeCurrency={onChangeCurrency}
 			/>
 		</div>
 	);

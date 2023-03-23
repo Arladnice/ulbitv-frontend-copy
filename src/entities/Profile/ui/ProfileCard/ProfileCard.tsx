@@ -2,11 +2,13 @@ import { ReactElement } from "react";
 
 import { classNames } from "shared/lib";
 import { Avatar, ETextAlign, ETextTheme, Input, Loader, Text } from "shared/ui";
+import { CurrencySelect } from "entities/Currency";
+import { CountrySelect } from "entities/Country";
 
 import { IProfileCardProps } from "./interfaces";
 import styles from "./ProfileCard.module.scss";
 
-const ProfileCard = ({
+export const ProfileCard = ({
 	className = "",
 	data,
 	error,
@@ -18,6 +20,8 @@ const ProfileCard = ({
 	onChangeAge,
 	onChangeAvatar,
 	onChangeUsername,
+	onChangeCountry,
+	onChangeCurrency,
 }: IProfileCardProps): ReactElement => {
 	if (isLoading) {
 		return (
@@ -111,9 +115,21 @@ const ProfileCard = ({
 					readonly={readonly}
 					onChange={onChangeAvatar}
 				/>
+
+				<CountrySelect
+					className={styles.input}
+					value={data?.country}
+					onChange={onChangeCountry}
+					readonly={readonly}
+				/>
+
+				<CurrencySelect
+					className={styles.input}
+					value={data?.currency}
+					onChange={onChangeCurrency}
+					readonly={readonly}
+				/>
 			</div>
 		</div>
 	);
 };
-
-export default ProfileCard;

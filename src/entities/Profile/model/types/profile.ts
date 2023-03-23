@@ -1,4 +1,5 @@
-import { ECountry, ECurrency } from "shared/constants/common";
+import { ECountry } from "entities/Country";
+import { ECurrency } from "entities/Currency";
 
 export interface IProfile {
 	first?: string;

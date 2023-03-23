@@ -1,14 +1,12 @@
-import { RouteProps } from "react-router-dom";
-
 import { AboutPage } from "pages/AboutPage";
 import { MainPage } from "pages/MainPage";
 import { NotFoundPage } from "pages/NotFoundPage";
 import { ProfilePage } from "pages/ProfilePage";
 
-import { EAppRoutes } from "./interfaces";
+import { EAppRoutes, TAppRoutesProps } from "./interfaces";
 import { RoutePath } from "./routePath";
 
-export const routeConfig: Record<EAppRoutes, RouteProps> = {
+export const routeConfig: Record<EAppRoutes, TAppRoutesProps> = {
 	[EAppRoutes.Main]: {
 		path: RoutePath.main,
 		element: <MainPage />,
@@ -20,6 +18,7 @@ export const routeConfig: Record<EAppRoutes, RouteProps> = {
 	[EAppRoutes.Profile]: {
 		path: RoutePath.profile,
 		element: <ProfilePage />,
+		authOnly: true,
 	},
 	[EAppRoutes.NotFound]: {
 		path: RoutePath.not_found,

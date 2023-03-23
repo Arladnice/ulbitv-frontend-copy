@@ -36,13 +36,13 @@
     }
   ],
   "profile": {
-    "first": "Имя",
-    "lastname": "Фамилия",
-    "age": 12121,
+    "first": "Name",
+    "lastname": "Last",
+    "age": 0,
     "currency": "RUB",
     "country": "Russia",
     "city": "Moscow",
-    "username": "admin",
+    "username": "",
     "avatar": "https://i.pravatar.cc/300"
   }
 }
