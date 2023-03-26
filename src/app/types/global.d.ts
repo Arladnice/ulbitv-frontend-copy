@@ -1,3 +1,5 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+
 /// <reference types="redux-thunk/extend-redux" />
 
 declare module "*.scss" {
@@ -27,10 +29,11 @@ declare module "*.jpeg" {
 declare type DeepPartial<T> = T extends object
 	? {
 			[P in keyof T]?: DeepPartial<T[P]>;
-			// eslint-disable-next-line
 	  }
 	: T;
 
 declare const __IS_DEV__: boolean;
 
 declare const __API__: string;
+
+declare const __PROJECT__: "storybook" | "frontend" | "jest";

@@ -15,6 +15,7 @@ export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 		paths: { html },
 		isDev,
 		apiUrl,
+		project,
 	} = options;
 
 	const plugins = [
@@ -29,6 +30,7 @@ export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 		new DefinePlugin({
 			__IS_DEV__: JSON.stringify(isDev),
 			__API__: JSON.stringify(apiUrl),
+			__PROJECT__: JSON.stringify(project),
 		}),
 	];
 
