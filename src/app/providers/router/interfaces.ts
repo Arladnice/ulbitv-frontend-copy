@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { RouteProps } from "react-router-dom";
 
 export enum EAppRoutes {
@@ -10,3 +11,7 @@ export enum EAppRoutes {
 export type TAppRoutesProps = RouteProps & {
 	authOnly?: boolean;
 };
+
+export interface IRequireAuth {
+	children: ReactElement;
+}
