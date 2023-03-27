@@ -2,7 +2,12 @@ import { SVGProps, VFC } from "react";
 
 import { routeConfig } from "app/providers/router";
 
-import { AboutIcon, MainIcon, ProfileIcon } from "shared/assets/icons";
+import {
+	AboutIcon,
+	MainIcon,
+	ProfileIcon,
+	ArticleIcon,
+} from "shared/assets/icons";
 
 export interface ISidebarItem {
 	path: string;
@@ -26,6 +31,12 @@ export const SidebarItemsList: ISidebarItem[] = [
 		icon: ProfileIcon,
 		path: routeConfig.profile.path || "",
 		text: "Профиль",
+		authOnly: true,
+	},
+	{
+		icon: ArticleIcon,
+		path: routeConfig.articles.path || "",
+		text: "Статьи",
 		authOnly: true,
 	},
 ];

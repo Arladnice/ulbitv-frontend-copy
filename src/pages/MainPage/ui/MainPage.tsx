@@ -7,4 +7,4 @@ const MainPage = memo((): ReactElement => {
 	return <div>{t("Главная")}</div>;
 });
 
-export default MainPage;
+export default memo(MainPage);

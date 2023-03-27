@@ -157,4 +157,4 @@ const ProfilePage = memo((): ReactElement => {
 	);
 });
 
-export default ProfilePage;
+export default memo(ProfilePage);

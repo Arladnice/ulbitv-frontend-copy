@@ -4,6 +4,8 @@ import { RouteProps } from "react-router-dom";
 export enum EAppRoutes {
 	Main = "main",
 	About = "about",
+	Articles = "articles",
+	ArticleDetails = "articleDetail",
 	Profile = "profile",
 	NotFound = "not_found",
 }
