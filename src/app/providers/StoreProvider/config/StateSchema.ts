@@ -10,11 +10,14 @@ import { AxiosInstance } from "axios";
 import { ILoginSchema } from "features/AuthByUsername";
 import { IUserSchema } from "entities/User";
 import { IProfileSchema } from "entities/Profile";
+import { IArticleDetailsSchema } from "entities/Article";
 
 export interface IStateSchema {
 	user: IUserSchema;
+
 	loginForm?: ILoginSchema;
 	profile?: IProfileSchema;
+	articleDetails?: IArticleDetailsSchema;
 }
 
 export type TStateSchemaKey = keyof IStateSchema;
