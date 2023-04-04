@@ -11,4 +11,7 @@ export { Input } from "./Input/Input";
 export { Avatar } from "./Avatar/Avatar";
 export { Text } from "./Text/Text";
 export { Select } from "./Select/Select";
-export { ETextTheme, ETextAlign } from "./Text/interfaces";
+export { ETextTheme, ETextAlign, ETextSize } from "./Text/interfaces";
+export { Skeleton } from "./Skeleton/Skeleton";
+export { Icon } from "./Icon/Icon";
+export { Code } from "./Code/Code";

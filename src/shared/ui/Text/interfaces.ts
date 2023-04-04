@@ -9,10 +9,16 @@ export enum ETextAlign {
 	Right = "right",
 }
 
+export enum ETextSize {
+	M = "size_m",
+	L = "size_l",
+}
+
 export interface ITextProps {
 	title?: string;
 	text?: string;
 	className?: string;
 	theme?: ETextTheme;
 	align?: ETextAlign;
+	size?: ETextSize;
 }
