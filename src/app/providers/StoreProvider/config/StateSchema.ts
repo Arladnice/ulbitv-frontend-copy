@@ -11,6 +11,7 @@ import { ILoginSchema } from "features/AuthByUsername";
 import { IUserSchema } from "entities/User";
 import { IProfileSchema } from "entities/Profile";
 import { IArticleDetailsSchema } from "entities/Article";
+import { IArticleDetailsCommentsSchema } from "pages/ArticleDetailPage/model/types/ArticleDetailsCommentsSchema";
 
 export interface IStateSchema {
 	user: IUserSchema;
@@ -18,6 +19,7 @@ export interface IStateSchema {
 	loginForm?: ILoginSchema;
 	profile?: IProfileSchema;
 	articleDetails?: IArticleDetailsSchema;
+	articleDetailsComments?: IArticleDetailsCommentsSchema;
 }
 
 export type TStateSchemaKey = keyof IStateSchema;
