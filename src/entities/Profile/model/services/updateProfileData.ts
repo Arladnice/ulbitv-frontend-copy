@@ -9,11 +9,11 @@ import { validateProfileData } from "./validateProfileData";
 
 export const updateProfileData = createAsyncThunk<
 	IProfile,
-	void,
+	string,
 	IThunkConfig<EValidateProfileError[]>
 >(
 	"profile/updateProfileData",
-	async (_, { extra, rejectWithValue, getState }) => {
+	async (profileId, { extra, rejectWithValue, getState }) => {
 		const formData = getProfileForm(getState() as any);
 
 		const errors = validateProfileData(formData);
@@ -23,7 +23,10 @@ export const updateProfileData = createAsyncThunk<
 		}
 
 		try {
-			const response = await extra.api.put<IProfile>("/profile", formData);
+			const response = await extra.api.put<IProfile>(
+				`/profile/${profileId}`,
+				formData
+			);
 
 			if (!response.data) {
 				throw new Error("something wrong");
