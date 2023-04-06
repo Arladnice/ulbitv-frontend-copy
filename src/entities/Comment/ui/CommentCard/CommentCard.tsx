@@ -1,8 +1,9 @@
 import { memo, ReactElement } from "react";
 
 import { classNames } from "shared/lib";
-import { Avatar, Skeleton, Text } from "shared/ui";
+import { AppLink, Avatar, Skeleton, Text } from "shared/ui";
 
+import { RoutePath } from "app/providers/router";
 import { ICommentCardProps } from "./interfaces";
 import styles from "./CommentCard.module.scss";
 
@@ -11,7 +12,7 @@ export const CommentCard = memo(
 		className = "",
 		comment: {
 			text,
-			user: { username, avatar },
+			user: { username, avatar, id },
 		},
 		isLoading,
 	}: ICommentCardProps): ReactElement => {
@@ -35,12 +36,12 @@ export const CommentCard = memo(
 
 		return (
 			<div className={classNames(styles.commentCard, {}, [className])}>
-				<div className={styles.header}>
+				<AppLink to={`${RoutePath.profile}/${id}`} className={styles.header}>
 					{avatar && (
 						<Avatar size={30} src={avatar} className={styles.avatar} />
 					)}
 					<Text title={username} />
-				</div>
+				</AppLink>
 
 				<Text text={text} className={styles.text} />
 			</div>

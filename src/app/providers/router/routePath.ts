@@ -5,6 +5,6 @@ export const RoutePath: Record<EAppRoutes, string> = {
 	[EAppRoutes.About]: "/about",
 	[EAppRoutes.Articles]: "/articles",
 	[EAppRoutes.ArticleDetails]: "/articles", // + /:id
-	[EAppRoutes.Profile]: "/profile",
+	[EAppRoutes.Profile]: "/profile", // + /:id
 	[EAppRoutes.NotFound]: "*",
 };

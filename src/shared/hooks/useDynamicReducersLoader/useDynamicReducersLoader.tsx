@@ -9,7 +9,7 @@ import { useAppDispatch } from "../useAppDispatch";
 
 export const useDynamicReducersLoader = ({
 	reducers,
-	removeAfterUnmount,
+	removeAfterUnmount = true,
 }: IDynamicModuleLoader): void => {
 	const dispatch = useAppDispatch();
 	const store = useStore() as IReduxStoreWithManager;

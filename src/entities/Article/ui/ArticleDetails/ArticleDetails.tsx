@@ -41,7 +41,7 @@ const reducers: TReducersList = {
 
 export const ArticleDetails = memo(
 	({ className = "", articleId }: IArticleDetailsProps): ReactElement => {
-		useDynamicReducersLoader({ reducers, removeAfterUnmount: true });
+		useDynamicReducersLoader({ reducers });
 
 		const dispatch = useAppDispatch();
 		const isLoading = useSelector(getArticleDetailsIsLoading);

@@ -37,6 +37,7 @@ const LoginForm = memo(
 
 		useDynamicReducersLoader({
 			reducers: initReducers,
+			removeAfterUnmount: false,
 		});
 
 		const onUsernameChange = useCallback(

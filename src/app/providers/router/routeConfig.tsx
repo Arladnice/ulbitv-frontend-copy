@@ -32,6 +32,11 @@ export const routeConfig: Record<EAppRoutes, TAppRoutesProps> = {
 		element: <ProfilePage />,
 		authOnly: true,
 	},
+	[EAppRoutes.Profile]: {
+		path: `${RoutePath.profile}/:id`,
+		element: <ProfilePage />,
+		authOnly: true,
+	},
 	[EAppRoutes.NotFound]: {
 		path: RoutePath.not_found,
 		element: <NotFoundPage />,

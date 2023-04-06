@@ -118,14 +118,28 @@
 			"avatar": "https://i.pravatar.cc/300"
 		}
 	],
-	"profile": {
-		"first": "SomeNa",
-		"lastname": "SomeMe",
-		"age": 465,
-		"currency": "RUB",
-		"country": "Russia",
-		"city": "Moscow",
-		"username": "adminus",
-		"avatar": "https://i.pravatar.cc/300"
-	}
+	"profile": [
+		{
+			"id": "1",
+			"first": "FirstAdmin",
+			"lastname": "Suppper",
+			"age": 65,
+			"currency": "RUB",
+			"country": "Russia",
+			"city": "Moscow",
+			"username": "adminus",
+			"avatar": "https://i.pravatar.cc/300"
+		},
+		{
+			"id": "2",
+			"first": "UserTwice",
+			"lastname": "Regular",
+			"age": 45,
+			"currency": "RUB",
+			"country": "Russia",
+			"city": "Moscow",
+			"username": "userus",
+			"avatar": "https://i.pravatar.cc/300"
+		}
+	]
 }

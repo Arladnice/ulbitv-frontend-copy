@@ -6,11 +6,11 @@ import { IProfile } from "../types/profile";
 
 export const fetchProfileData = createAsyncThunk<
 	IProfile,
-	void,
+	string,
 	IThunkConfig<string>
->("profile/fetchProfileData", async (_, { extra, rejectWithValue }) => {
+>("profile/fetchProfileData", async (profileId, { extra, rejectWithValue }) => {
 	try {
-		const response = await extra.api.get<IProfile>("/profile");
+		const response = await extra.api.get<IProfile>(`/profile/${profileId}`);
 
 		if (!response.data) {
 			throw new Error("something wrong");

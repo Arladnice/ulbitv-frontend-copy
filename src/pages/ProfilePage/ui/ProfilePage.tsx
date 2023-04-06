@@ -1,4 +1,5 @@
 import { memo, ReactElement, useCallback, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import {
@@ -20,8 +21,8 @@ import {
 	TReducersList,
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
-
 import { ETextTheme, Text } from "shared/ui";
+
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
 const reducers: TReducersList = {
@@ -29,9 +30,10 @@ const reducers: TReducersList = {
 };
 
 const ProfilePage = memo((): ReactElement => {
-	useDynamicReducersLoader({ reducers, removeAfterUnmount: true });
+	useDynamicReducersLoader({ reducers });
 
 	const dispatch = useAppDispatch();
+	const { id: profileId } = useParams<{ id: string }>();
 
 	const formData = useSelector(getProfileForm);
 	const error = useSelector(getProfileError);
@@ -40,8 +42,10 @@ const ProfilePage = memo((): ReactElement => {
 	const errors = useSelector(getProfileValidateErrors);
 
 	useEffect(() => {
-		dispatch(fetchProfileData());
-	}, [dispatch]);
+		if (profileId) {
+			dispatch(fetchProfileData(profileId));
+		}
+	}, [dispatch, profileId]);
 
 	const onChangeFirstName = useCallback(
 		(value: string = "") => {
