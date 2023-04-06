@@ -10,12 +10,13 @@ import styles from "./CommentCard.module.scss";
 export const CommentCard = memo(
 	({
 		className = "",
-		comment: {
-			text,
-			user: { username, avatar, id },
-		},
+		comment,
 		isLoading,
-	}: ICommentCardProps): ReactElement => {
+	}: ICommentCardProps): ReactElement | null => {
+		if (!comment) {
+			return null;
+		}
+
 		if (isLoading) {
 			return (
 				<div className={classNames(styles.commentCard, {}, [className])}>
@@ -33,6 +34,11 @@ export const CommentCard = memo(
 				</div>
 			);
 		}
+
+		const {
+			text,
+			user: { username, avatar, id },
+		} = comment;
 
 		return (
 			<div className={classNames(styles.commentCard, {}, [className])}>

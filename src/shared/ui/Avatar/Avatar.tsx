@@ -10,7 +10,7 @@ export const Avatar = memo(
 		<img
 			className={classNames(styles.avatar, {}, [className])}
 			src={src}
-			alt="аватар"
+			alt=""
 			width={size}
 			height={size}
 		/>
