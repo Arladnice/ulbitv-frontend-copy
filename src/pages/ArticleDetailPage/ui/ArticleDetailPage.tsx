@@ -1,10 +1,10 @@
 import { ReactElement, memo, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
 import { ArticleDetails } from "entities/Article";
-import { Text } from "shared/ui";
+import { Button, EButtonTheme, Text } from "shared/ui";
 import { CommentList } from "entities/Comment";
 import {
 	TReducersList,
@@ -12,6 +12,7 @@ import {
 } from "shared/hooks/useDynamicReducersLoader";
 import { AddCommentForm } from "features/AddNewComment";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
+import { RoutePath } from "app/providers/router";
 
 import {
 	articleDetailsCommentsReducer,
@@ -33,6 +34,7 @@ const ArticleDetailPage = ({
 }: IArticleDetailPageProps): ReactElement => {
 	useDynamicReducersLoader({ reducers });
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const { id: articleId } = useParams<{ id: string }>();
 
@@ -50,6 +52,10 @@ const ArticleDetailPage = ({
 		[dispatch]
 	);
 
+	const onBackToList = useCallback(() => {
+		navigate(RoutePath.articles);
+	}, [navigate]);
+
 	if (!articleId) {
 		return (
 			<div className={classNames(styles.articlesPage, {}, [className])}>
@@ -60,6 +66,9 @@ const ArticleDetailPage = ({
 
 	return (
 		<div className={classNames(styles.articlesPage, {}, [className])}>
+			<Button onClick={onBackToList} theme={EButtonTheme.Outline}>
+				Назад
+			</Button>
 			<ArticleDetails articleId={articleId} />
 			<Text title="Комментарии" className={styles.commentTitle} />
 			<AddCommentForm onSendComment={onSendComment} />

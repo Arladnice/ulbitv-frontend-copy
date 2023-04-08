@@ -15,3 +15,4 @@ export { ETextTheme, ETextAlign, ETextSize } from "./Text/interfaces";
 export { Skeleton } from "./Skeleton/Skeleton";
 export { Icon } from "./Icon/Icon";
 export { Code } from "./Code/Code";
+export { Card } from "./Card/Card";
