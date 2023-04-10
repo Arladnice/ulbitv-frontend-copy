@@ -6,6 +6,7 @@ import {
 
 import { IStateSchema } from "app/providers/StoreProvider";
 import { EArticleView, IArticle } from "entities/Article";
+import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from "shared/constants/localStorage";
 
 import { IArticlesPageSchema } from "../types/articlesPageSchema";
 import { fetchArticlesList } from "../services/fetchArticlesList";
@@ -32,6 +33,12 @@ const articlesPageSlice = createSlice({
 	reducers: {
 		setView: (state, action: PayloadAction<EArticleView>) => {
 			state.view = action.payload;
+			localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
+		},
+		initState: (state) => {
+			state.view = localStorage.getItem(
+				ARTICLES_VIEW_LOCALSTORAGE_KEY
+			) as EArticleView;
 		},
 	},
 	extraReducers: (builder) => {

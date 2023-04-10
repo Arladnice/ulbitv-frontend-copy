@@ -1,8 +1,8 @@
-import { ReactElement, memo, useEffect } from "react";
+import { ReactElement, memo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
-import { ArticleList } from "entities/Article";
+import { ArticleList, ArticleViewSwitch, EArticleView } from "entities/Article";
 import {
 	TReducersList,
 	useDynamicReducersLoader,
@@ -10,6 +10,7 @@ import {
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 
 import {
+	articlesPageAction,
 	articlesPageReducer,
 	getArticle,
 } from "../model/slices/articlesPageSlice";
@@ -38,12 +39,21 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	const error = useSelector(getArticlesPageError);
 	const view = useSelector(getArticlesPageView);
 
+	const onChangeView = useCallback(
+		(view: EArticleView) => {
+			dispatch(articlesPageAction.setView(view));
+		},
+		[dispatch]
+	);
+
 	useEffect(() => {
 		dispatch(fetchArticlesList());
+		dispatch(articlesPageAction.initState());
 	}, [dispatch]);
 
 	return (
 		<div className={classNames(styles.articlesPage, {}, [className])}>
+			<ArticleViewSwitch view={view} onChangeView={onChangeView} />
 			<ArticleList view={view} articles={articles} isLoading={isLoading} />
 		</div>
 	);
