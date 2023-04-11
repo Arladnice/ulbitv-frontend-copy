@@ -21,6 +21,7 @@ import {
 	getArticlesPageIsLoading,
 	getArticlesPageView,
 } from "../model/selectors/articles";
+import { fetchNextArticlesPage } from "../model/services/fetchNextArticlesPage";
 
 import { IArticlesPageProps } from "./interfaces";
 import styles from "./ArticlesPage.module.scss";
@@ -47,6 +48,10 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 		[dispatch]
 	);
 
+	const onLoadNextPage = useCallback(() => {
+		dispatch(fetchNextArticlesPage());
+	}, [dispatch]);
+
 	useEffect(() => {
 		dispatch(articlesPageAction.initState());
 		dispatch(
@@ -57,7 +62,10 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	}, [dispatch]);
 
 	return (
-		<Page className={classNames(styles.articlesPage, {}, [className])}>
+		<Page
+			className={classNames(styles.articlesPage, {}, [className])}
+			onScrollEnd={onLoadNextPage}
+		>
 			<ArticleViewSwitch view={view} onChangeView={onChangeView} />
 			<ArticleList view={view} articles={articles} isLoading={isLoading} />
 		</Page>

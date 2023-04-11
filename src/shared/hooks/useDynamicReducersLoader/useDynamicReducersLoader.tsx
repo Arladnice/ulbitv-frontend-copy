@@ -4,13 +4,13 @@ import { useStore } from "react-redux";
 import { IReduxStoreWithManager } from "app/providers/StoreProvider";
 
 import { TStateSchemaKey } from "app/providers/StoreProvider/config/StateSchema";
-import { IDynamicModuleLoader } from "./interfaces";
+import { IDynamicModuleLoaderProps } from "./interfaces";
 import { useAppDispatch } from "../useAppDispatch";
 
 export const useDynamicReducersLoader = ({
 	reducers,
 	removeAfterUnmount = true,
-}: IDynamicModuleLoader): void => {
+}: IDynamicModuleLoaderProps): void => {
 	const dispatch = useAppDispatch();
 	const store = useStore() as IReduxStoreWithManager;
 

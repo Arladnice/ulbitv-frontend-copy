@@ -38,22 +38,10 @@ export const ArticleList = memo(
 					/>
 				));
 
-		if (isLoading) {
-			return (
-				<div
-					className={classNames(styles.articleList, {}, [
-						className,
-						styles[view],
-					])}
-				>
-					{renderSkeletons()}
-				</div>
-			);
-		}
-
 		return (
 			<div className={classNames(styles.articleList, {}, [className])}>
 				{articles.length > 0 ? articles.map(renderArticle) : null}
+				{isLoading && renderSkeletons()}
 			</div>
 		);
 	}

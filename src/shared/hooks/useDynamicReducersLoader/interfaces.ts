@@ -8,7 +8,7 @@ export type TReducersList = {
 
 export type TReducersListEntry = [TStateSchemaKey, Reducer];
 
-export interface IDynamicModuleLoader {
+export interface IDynamicModuleLoaderProps {
 	reducers: TReducersList;
 	removeAfterUnmount?: boolean;
 }

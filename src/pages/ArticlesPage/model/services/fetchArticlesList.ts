@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { IThunkConfig } from "app/providers/StoreProvider";
 import { IArticle } from "entities/Article";
+
 import { getArticlesPageLimit } from "../selectors/articles";
 
 interface IFetchArticlesListProps {
@@ -18,7 +19,6 @@ export const fetchArticlesList = createAsyncThunk<
 		const { page = 1 } = args;
 
 		const limit = getArticlesPageLimit(getState() as any);
-
 		try {
 			const response = await extra.api.get<IArticle[]>("/articles", {
 				params: {
