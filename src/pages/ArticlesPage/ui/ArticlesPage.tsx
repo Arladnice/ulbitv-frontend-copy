@@ -9,6 +9,7 @@ import {
 } from "shared/hooks/useDynamicReducersLoader";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 
+import { Page } from "shared/ui";
 import {
 	articlesPageAction,
 	articlesPageReducer,
@@ -47,15 +48,19 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	);
 
 	useEffect(() => {
-		dispatch(fetchArticlesList());
 		dispatch(articlesPageAction.initState());
+		dispatch(
+			fetchArticlesList({
+				page: 1,
+			})
+		);
 	}, [dispatch]);
 
 	return (
-		<div className={classNames(styles.articlesPage, {}, [className])}>
+		<Page className={classNames(styles.articlesPage, {}, [className])}>
 			<ArticleViewSwitch view={view} onChangeView={onChangeView} />
 			<ArticleList view={view} articles={articles} isLoading={isLoading} />
-		</div>
+		</Page>
 	);
 };
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
 import { ArticleDetails } from "entities/Article";
-import { Button, EButtonTheme, Text } from "shared/ui";
+import { Button, EButtonTheme, Page, Text } from "shared/ui";
 import { CommentList } from "entities/Comment";
 import {
 	TReducersList,
@@ -65,7 +65,7 @@ const ArticleDetailPage = ({
 	}
 
 	return (
-		<div className={classNames(styles.articlesPage, {}, [className])}>
+		<Page className={classNames(styles.articlesPage, {}, [className])}>
 			<Button onClick={onBackToList} theme={EButtonTheme.Outline}>
 				Назад
 			</Button>
@@ -73,7 +73,7 @@ const ArticleDetailPage = ({
 			<Text title="Комментарии" className={styles.commentTitle} />
 			<AddCommentForm onSendComment={onSendComment} />
 			<CommentList isLoading={commentsIsLoading} comments={comments} />
-		</div>
+		</Page>
 	);
 };
 

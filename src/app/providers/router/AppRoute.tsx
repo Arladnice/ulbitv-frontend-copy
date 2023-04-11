@@ -10,9 +10,7 @@ import { TAppRoutesProps } from "./interfaces";
 export const AppRoute = memo((): ReactElement => {
 	const renderWithWrapper = useCallback((route: TAppRoutesProps) => {
 		const element = (
-			<Suspense fallback={<PageLoader />}>
-				<div className="page-wrapper">{route.element}</div>
-			</Suspense>
+			<Suspense fallback={<PageLoader />}>{route.element}</Suspense>
 		);
 
 		return (

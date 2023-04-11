@@ -23,6 +23,8 @@ const initialState = articlesAdapter.getInitialState<IArticlesPageSchema>({
 	isLoading: false,
 	error: undefined,
 	view: EArticleView.Small,
+	hasMore: true,
+	page: 1,
 	ids: [],
 	entities: {},
 });
@@ -35,10 +37,13 @@ const articlesPageSlice = createSlice({
 			state.view = action.payload;
 			localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
 		},
+		setPage: (state, action: PayloadAction<number>) => {
+			state.page = action.payload;
+		},
 		initState: (state) => {
-			state.view = localStorage.getItem(
-				ARTICLES_VIEW_LOCALSTORAGE_KEY
-			) as EArticleView;
+			const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY);
+			state.view = view as EArticleView;
+			state.limit = view === EArticleView.Big ? 4 : 9;
 		},
 	},
 	extraReducers: (builder) => {

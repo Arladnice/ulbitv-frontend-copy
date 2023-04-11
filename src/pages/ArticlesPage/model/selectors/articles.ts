@@ -9,3 +9,12 @@ export const getArticlesPageError = (state: IStateSchema) =>
 
 export const getArticlesPageView = (state: IStateSchema) =>
 	state.articlePage?.view || EArticleView.Small;
+
+export const getArticlesPageNumber = (state: IStateSchema) =>
+	state.articlePage?.page || 1;
+
+export const getArticlesPageLimit = (state: IStateSchema) =>
+	state.articlePage?.limit || 9;
+
+export const getArticlesPageHasMore = (state: IStateSchema) =>
+	state.articlePage?.hasMore;

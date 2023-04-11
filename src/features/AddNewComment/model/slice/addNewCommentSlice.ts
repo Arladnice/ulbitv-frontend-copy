@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { type IAddNewComment } from "../types/addNewComment";
+import { IAddNewComment } from "../types/addNewComment";
 
 const initialState: IAddNewComment = {
 	error: undefined,

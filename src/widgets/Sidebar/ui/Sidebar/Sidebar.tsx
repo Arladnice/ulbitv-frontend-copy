@@ -34,7 +34,7 @@ export const Sidebar = memo(
 		);
 
 		return (
-			<div
+			<menu
 				data-testid="Sidebar"
 				className={classNames(
 					styles.sidebar,
@@ -60,7 +60,7 @@ export const Sidebar = memo(
 					<ThemeSwitcher />
 					<LangSwitcher short={collapsed} />
 				</div>
-			</div>
+			</menu>
 		);
 	}
 );

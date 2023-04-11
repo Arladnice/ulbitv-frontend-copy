@@ -21,7 +21,7 @@ import {
 	TReducersList,
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
-import { ETextTheme, Text } from "shared/ui";
+import { ETextTheme, Page, Text } from "shared/ui";
 
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 
@@ -136,7 +136,7 @@ const ProfilePage = memo((): ReactElement => {
 	);
 
 	return (
-		<div>
+		<Page>
 			<ProfilePageHeader />
 
 			{errors.length
@@ -157,7 +157,7 @@ const ProfilePage = memo((): ReactElement => {
 				onChangeCountry={onChangeCountry}
 				onChangeCurrency={onChangeCurrency}
 			/>
-		</div>
+		</Page>
 	);
 });
 
