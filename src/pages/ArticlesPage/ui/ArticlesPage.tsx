@@ -8,7 +8,7 @@ import {
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
-import { Page } from "shared/ui";
+import { Page } from "widgets/Page";
 
 import {
 	articlesPageAction,

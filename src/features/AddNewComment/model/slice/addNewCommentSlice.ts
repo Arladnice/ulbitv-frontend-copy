@@ -11,8 +11,8 @@ export const addNewCommentSlice = createSlice({
 	name: "addNewComment",
 	initialState,
 	reducers: {
-		setText: (state, actions: PayloadAction<string>) => {
-			state.text = actions.payload;
+		setText: (state, action: PayloadAction<string>) => {
+			state.text = action.payload;
 		},
 	},
 });

@@ -13,9 +13,11 @@ import { IArticleDetailsSchema } from "entities/Article";
 import { IArticleDetailsCommentsSchema } from "pages/ArticleDetailPage/model/types/articleDetailsCommentsSchema";
 import { IAddNewComment } from "features/AddNewComment";
 import { IArticlesPageSchema } from "pages/ArticlesPage";
+import { IPageSchema } from "widgets/Page";
 
 export interface IStateSchema {
 	user: IUserSchema;
+	page: IPageSchema;
 
 	loginForm?: ILoginSchema;
 	profile?: IProfileSchema;

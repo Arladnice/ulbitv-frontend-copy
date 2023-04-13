@@ -15,13 +15,13 @@ import {
 } from "entities/Profile";
 import { ECurrency } from "entities/Currency";
 import { ECountry } from "entities/Country";
-
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import {
 	TReducersList,
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
-import { ETextTheme, Page, Text } from "shared/ui";
+import { ETextTheme, Text } from "shared/ui";
+import { Page } from "widgets/Page";
 
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 

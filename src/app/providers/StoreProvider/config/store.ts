@@ -7,6 +7,7 @@ import {
 
 import { userReducer } from "entities/User";
 import { api } from "shared/api/api";
+import { pageReducer } from "widgets/Page";
 
 import {
 	ICreateReduxStore,
@@ -22,6 +23,7 @@ export function createReduxStore({
 	const rootReducers: ReducersMapObject<IStateSchema> = {
 		...asyncReducers,
 		user: userReducer,
+		page: pageReducer,
 	};
 
 	const reducerManager = createReducerManager(rootReducers);

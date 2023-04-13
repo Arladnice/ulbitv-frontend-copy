@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
 import { ArticleDetails } from "entities/Article";
-import { Button, EButtonTheme, Page, Text } from "shared/ui";
+import { Button, EButtonTheme, Text } from "shared/ui";
 import { CommentList } from "entities/Comment";
 import {
 	TReducersList,
@@ -13,6 +13,7 @@ import {
 import { AddCommentForm } from "features/AddNewComment";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { RoutePath } from "app/providers/router";
+import { Page } from "widgets/Page";
 
 import {
 	articleDetailsCommentsReducer,
