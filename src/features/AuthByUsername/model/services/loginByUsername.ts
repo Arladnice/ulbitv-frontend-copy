@@ -29,7 +29,6 @@ export const loginByUsername = createAsyncThunk<
 			);
 
 			dispatch(userActions.setAuthData(response.data));
-			extra.navigate?.("/profile");
 
 			return response.data;
 		} catch (error) {

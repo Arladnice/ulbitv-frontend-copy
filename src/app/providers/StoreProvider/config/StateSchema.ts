@@ -4,7 +4,6 @@ import {
 	Reducer,
 	ReducersMapObject,
 } from "@reduxjs/toolkit";
-import { NavigateFunction } from "react-router-dom";
 import { AxiosInstance } from "axios";
 
 import { ILoginSchema } from "features/AuthByUsername";
@@ -27,12 +26,14 @@ export interface IStateSchema {
 }
 
 export type TStateSchemaKey = keyof IStateSchema;
+export type TMountedReducers = Partial<Record<TStateSchemaKey, boolean>>;
 
 export interface IReducerManager {
 	getReducerMap: () => ReducersMapObject<IStateSchema>;
 	reduce: (state: IStateSchema, action: any) => CombinedState<IStateSchema>;
 	add: (key: TStateSchemaKey, reducer: Reducer) => void;
 	remove: (key: TStateSchemaKey) => void;
+	getMountedReducers: () => TMountedReducers;
 }
 
 export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
@@ -42,12 +43,10 @@ export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
 export interface ICreateReduxStore {
 	initialState?: IStateSchema;
 	asyncReducers?: ReducersMapObject<IStateSchema>;
-	navigate?: NavigateFunction;
 }
 
 export interface IThunkExtraArgs {
 	api: AxiosInstance;
-	navigate?: NavigateFunction;
 }
 
 export interface IThunkConfig<T> {

@@ -8,19 +8,20 @@ import {
 	useDynamicReducersLoader,
 } from "shared/hooks/useDynamicReducersLoader";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
-
 import { Page } from "shared/ui";
+
 import {
 	articlesPageAction,
 	articlesPageReducer,
 	getArticle,
 } from "../model/slices/articlesPageSlice";
-import { fetchArticlesList } from "../model/services/fetchArticlesList";
+
 import {
 	getArticlesPageError,
 	getArticlesPageIsLoading,
 	getArticlesPageView,
 } from "../model/selectors/articles";
+import { initArticlesPage } from "../model/services/initArticlesPage";
 import { fetchNextArticlesPage } from "../model/services/fetchNextArticlesPage";
 
 import { IArticlesPageProps } from "./interfaces";
@@ -31,7 +32,7 @@ const reducers: TReducersList = {
 };
 
 const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
-	useDynamicReducersLoader({ reducers });
+	useDynamicReducersLoader({ reducers, removeAfterUnmount: false });
 
 	const dispatch = useAppDispatch();
 
@@ -53,12 +54,7 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(articlesPageAction.initState());
-		dispatch(
-			fetchArticlesList({
-				page: 1,
-			})
-		);
+		dispatch(initArticlesPage());
 	}, [dispatch]);
 
 	return (

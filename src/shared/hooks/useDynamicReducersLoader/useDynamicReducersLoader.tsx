@@ -15,9 +15,14 @@ export const useDynamicReducersLoader = ({
 	const store = useStore() as IReduxStoreWithManager;
 
 	useEffect(() => {
+		const mountedReducers = store.reducerManager.getMountedReducers();
+
 		Object.entries(reducers).forEach(([name, reducer]) => {
-			store.reducerManager.add(name as TStateSchemaKey, reducer);
-			dispatch({ type: `@INIT ${name} reducer` });
+			const mounted = mountedReducers[name as TStateSchemaKey];
+			if (!mounted) {
+				store.reducerManager.add(name as TStateSchemaKey, reducer);
+				dispatch({ type: `@INIT ${name} reducer` });
+			}
 		});
 
 		return () => {

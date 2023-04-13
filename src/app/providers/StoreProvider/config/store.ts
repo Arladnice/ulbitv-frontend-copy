@@ -18,7 +18,6 @@ import { createReducerManager } from "./reducerManager";
 export function createReduxStore({
 	asyncReducers,
 	initialState,
-	navigate,
 }: ICreateReduxStore) {
 	const rootReducers: ReducersMapObject<IStateSchema> = {
 		...asyncReducers,
@@ -37,7 +36,6 @@ export function createReduxStore({
 				thunk: {
 					extraArgument: {
 						api,
-						navigate,
 					} as IThunkExtraArgs,
 				},
 			}),
