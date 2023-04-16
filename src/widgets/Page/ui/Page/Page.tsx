@@ -58,7 +58,7 @@ export const Page = ({
 		>
 			{children}
 			{/* @ts-ignore */}
-			<div ref={triggerRef} className={styles.trigger} />
+			{onScrollEnd ? <div ref={triggerRef} className={styles.trigger} /> : null}
 		</section>
 	);
 };

@@ -6,7 +6,7 @@ import {
 	getArticlesPageHasMore,
 	getArticlesPageIsLoading,
 	getArticlesPageNumber,
-} from "../selectors/articles";
+} from "../selectors/articlesPageSelectors";
 import { articlesPageAction } from "../slices/articlesPageSlice";
 
 import { fetchArticlesList } from "./fetchArticlesList";
@@ -22,10 +22,6 @@ export const fetchNextArticlesPage = createAsyncThunk<
 
 	if (hasMorePage && !isLoading) {
 		dispatch(articlesPageAction.setPage(currentPage + 1));
-		dispatch(
-			fetchArticlesList({
-				page: currentPage + 1,
-			})
-		);
+		dispatch(fetchArticlesList({}));
 	}
 });

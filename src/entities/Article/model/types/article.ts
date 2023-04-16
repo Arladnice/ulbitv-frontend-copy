@@ -55,3 +55,9 @@ export interface IArticle {
 	type: EArticleType[];
 	blocks: TArticleBlock[];
 }
+
+export enum EArticleSortField {
+	Views = "views",
+	Title = "title",
+	Created = "createdAt",
+}

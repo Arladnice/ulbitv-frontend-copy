@@ -2,7 +2,7 @@ import { ReactElement, memo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
-import { ArticleList, ArticleViewSwitch, EArticleView } from "entities/Article";
+import { ArticleList } from "entities/Article";
 import {
 	TReducersList,
 	useDynamicReducersLoader,
@@ -11,18 +11,19 @@ import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { Page } from "widgets/Page";
 
 import {
-	articlesPageAction,
 	articlesPageReducer,
 	getArticle,
-} from "../model/slices/articlesPageSlice";
+} from "../../model/slices/articlesPageSlice";
 
 import {
 	getArticlesPageError,
 	getArticlesPageIsLoading,
 	getArticlesPageView,
-} from "../model/selectors/articles";
-import { initArticlesPage } from "../model/services/initArticlesPage";
-import { fetchNextArticlesPage } from "../model/services/fetchNextArticlesPage";
+} from "../../model/selectors/articlesPageSelectors";
+import { initArticlesPage } from "../../model/services/initArticlesPage";
+import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage";
+
+import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 
 import { IArticlesPageProps } from "./interfaces";
 import styles from "./ArticlesPage.module.scss";
@@ -42,13 +43,6 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	const error = useSelector(getArticlesPageError);
 	const view = useSelector(getArticlesPageView);
 
-	const onChangeView = useCallback(
-		(view: EArticleView) => {
-			dispatch(articlesPageAction.setView(view));
-		},
-		[dispatch]
-	);
-
 	const onLoadNextPage = useCallback(() => {
 		dispatch(fetchNextArticlesPage());
 	}, [dispatch]);
@@ -62,8 +56,13 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 			className={classNames(styles.articlesPage, {}, [className])}
 			onScrollEnd={onLoadNextPage}
 		>
-			<ArticleViewSwitch view={view} onChangeView={onChangeView} />
-			<ArticleList view={view} articles={articles} isLoading={isLoading} />
+			<ArticlesPageFilters />
+			<ArticleList
+				view={view}
+				articles={articles}
+				isLoading={isLoading}
+				className={styles.list}
+			/>
 		</Page>
 	);
 };
