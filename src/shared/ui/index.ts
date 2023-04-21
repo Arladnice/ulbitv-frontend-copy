@@ -16,3 +16,6 @@ export { Skeleton } from "./Skeleton/Skeleton";
 export { Icon } from "./Icon/Icon";
 export { Code } from "./Code/Code";
 export { Card } from "./Card/Card";
+export { ECardTheme } from "./Card/interfaces";
+export { Tabs } from "./Tabs/Tabs";
+export { ITabItem } from "./Tabs/interfaces";

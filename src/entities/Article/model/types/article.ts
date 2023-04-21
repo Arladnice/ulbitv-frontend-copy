@@ -34,6 +34,7 @@ export type TArticleBlock =
 	| IArticleBlockText;
 
 export enum EArticleType {
+	All = "ALL",
 	It = "IT",
 	Science = "SCIENCE",
 	Economics = "ECONOMICS",

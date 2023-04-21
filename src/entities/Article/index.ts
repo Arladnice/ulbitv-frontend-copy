@@ -3,6 +3,7 @@ export {
 	IArticle,
 	EArticleView,
 	EArticleSortField,
+	EArticleType,
 } from "./model/types/article";
 export { IArticleDetailsSchema } from "./model/types/articleDetailsSchema";
 export { getArticleDetailsData } from "./model/selectors/articleDetails";

@@ -5,7 +5,12 @@ import {
 } from "@reduxjs/toolkit";
 
 import { IStateSchema } from "app/providers/StoreProvider";
-import { EArticleSortField, EArticleView, IArticle } from "entities/Article";
+import {
+	EArticleSortField,
+	EArticleType,
+	EArticleView,
+	IArticle,
+} from "entities/Article";
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from "shared/constants/localStorage";
 import { TSortOrder } from "shared/types";
 
@@ -30,6 +35,7 @@ const initialState = articlesAdapter.getInitialState<IArticlesPageSchema>({
 	order: "asc",
 	sort: EArticleSortField.Created,
 	search: "",
+	type: EArticleType.All,
 	ids: [],
 	entities: {},
 	_inited: false,
@@ -54,6 +60,9 @@ const articlesPageSlice = createSlice({
 		},
 		setSearch: (state, action: PayloadAction<string>) => {
 			state.search = action.payload;
+		},
+		setType: (state, action: PayloadAction<EArticleType>) => {
+			state.type = action.payload;
 		},
 		initState: (state) => {
 			const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY);

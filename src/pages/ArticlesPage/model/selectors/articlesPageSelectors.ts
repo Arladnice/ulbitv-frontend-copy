@@ -1,5 +1,9 @@
 import { IStateSchema } from "app/providers/StoreProvider";
-import { EArticleSortField, EArticleView } from "entities/Article";
+import {
+	EArticleSortField,
+	EArticleType,
+	EArticleView,
+} from "entities/Article";
 
 export const getArticlesPageIsLoading = (state: IStateSchema) =>
 	state.articlePage?.isLoading;
@@ -30,3 +34,6 @@ export const getArticlesPageSort = (state: IStateSchema) =>
 
 export const getArticlesPageSearch = (state: IStateSchema) =>
 	state.articlePage?.search || "";
+
+export const getArticlesPageType = (state: IStateSchema) =>
+	state.articlePage?.type || EArticleType.All;

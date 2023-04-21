@@ -6,19 +6,22 @@ import {
 	ArticleSortSelector,
 	ArticleViewSwitch,
 	EArticleSortField,
+	EArticleType,
 	EArticleView,
 } from "entities/Article";
-import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { Card, Input } from "shared/ui";
 import { TSortOrder } from "shared/types";
+import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { useDebounce } from "shared/hooks/useDebounce";
 
+import { ArticleTypeTabs } from "features/ArticleTypeTabs";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList";
 import { articlesPageAction } from "../../model/slices/articlesPageSlice";
 import {
 	getArticlesPageOrder,
 	getArticlesPageSearch,
 	getArticlesPageSort,
+	getArticlesPageType,
 	getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 
@@ -33,6 +36,7 @@ export const ArticlesPageFilters = memo(
 		const order = useSelector(getArticlesPageOrder);
 		const sort = useSelector(getArticlesPageSort);
 		const search = useSelector(getArticlesPageSearch);
+		const articleType = useSelector(getArticlesPageType);
 
 		const fetchData = useCallback(() => {
 			dispatch(
@@ -78,6 +82,15 @@ export const ArticlesPageFilters = memo(
 			[dispatch, debouncedFetchData]
 		);
 
+		const onChangeType = useCallback(
+			(value: EArticleType) => {
+				dispatch(articlesPageAction.setType(value));
+				dispatch(articlesPageAction.setPage(1));
+				fetchData();
+			},
+			[dispatch, fetchData]
+		);
+
 		return (
 			<div className={classNames(styles.articlesPageFilters, {}, [className])}>
 				<div className={styles.sortWrapper}>
@@ -98,6 +111,8 @@ export const ArticlesPageFilters = memo(
 						className={styles.searchInput}
 					/>
 				</Card>
+
+				<ArticleTypeTabs onTabClick={onChangeType} selectedTad={articleType} />
 			</div>
 		);
 	}

@@ -2,6 +2,7 @@ import { memo, ReactElement } from "react";
 
 import { classNames } from "shared/lib";
 
+import { ETextSize, Text } from "shared/ui";
 import { EArticleView, IArticle } from "../../model/types/article";
 
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
@@ -37,6 +38,14 @@ export const ArticleList = memo(
 						view={view}
 					/>
 				));
+
+		if (!isLoading && !articles.length) {
+			return (
+				<div className={classNames(styles.articleList, {}, [className])}>
+					<Text title="Статьи не найдены" size={ETextSize.L} />
+				</div>
+			);
+		}
 
 		return (
 			<div className={classNames(styles.articleList, {}, [className])}>

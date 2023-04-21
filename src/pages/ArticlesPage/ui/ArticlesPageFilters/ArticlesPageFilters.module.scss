@@ -1,15 +1,13 @@
 .articlesPageFilters {
-	// ArticlesPageFilters
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .sortWrapper {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.search {
-	margin-top: 16px;
 }
 
 .searchInput {
