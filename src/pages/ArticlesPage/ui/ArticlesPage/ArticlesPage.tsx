@@ -1,4 +1,5 @@
 import { ReactElement, memo, useCallback, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
@@ -36,6 +37,7 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	useDynamicReducersLoader({ reducers, removeAfterUnmount: false });
 
 	const dispatch = useAppDispatch();
+	const [searchParams] = useSearchParams();
 
 	const articles = useSelector(getArticle.selectAll);
 
@@ -48,8 +50,8 @@ const ArticlesPage = ({ className = "" }: IArticlesPageProps): ReactElement => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(initArticlesPage());
-	}, [dispatch]);
+		dispatch(initArticlesPage(searchParams));
+	}, [dispatch, searchParams]);
 
 	return (
 		<Page

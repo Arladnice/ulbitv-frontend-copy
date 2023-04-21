@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, ReactElement, useMemo } from "react";
+import { ChangeEvent, ReactElement, useMemo } from "react";
 
 import { classNames } from "shared/lib";
 
