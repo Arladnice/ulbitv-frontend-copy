@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { classNames } from "shared/lib";
-import { ArticleDetails } from "entities/Article";
-import { Button, EButtonTheme, Text } from "shared/ui";
+import { ArticleDetails, ArticleList } from "entities/Article";
+import { Button, EButtonTheme, ETextSize, Text } from "shared/ui";
 import { CommentList } from "entities/Comment";
 import {
 	TReducersList,
@@ -19,8 +19,14 @@ import {
 	articleDetailsCommentsReducer,
 	getArticleComments,
 } from "../model/slices/articleDetailsCommentsSlice";
+import {
+	articleDetailsRecommendationsReducer,
+	getArticleRecommendations,
+} from "../model/slices/articleDetailsRecommendationsSLice";
+import { getArticleRecommendationsIsLoading } from "../model/selectors/recommendations";
 import { getArticleCommentsIsLoading } from "../model/selectors/comments";
 import { fetchCommentsByArticleId } from "../model/services/fetchCommentsByArticleId";
+import { fetchArticleRecommendations } from "../model/services/fetchArticleRecommendations";
 import { addCommentForArticle } from "../model/services/addCommentForArticle";
 
 import { IArticleDetailPageProps } from "./interfaces";
@@ -28,6 +34,7 @@ import styles from "./ArticleDetailPage.module.scss";
 
 const reducers: TReducersList = {
 	articleDetailsComments: articleDetailsCommentsReducer,
+	articleDetailsRecommendations: articleDetailsRecommendationsReducer,
 };
 
 const ArticleDetailPage = ({
@@ -42,8 +49,14 @@ const ArticleDetailPage = ({
 	const comments = useSelector(getArticleComments.selectAll);
 	const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
 
+	const recommendations = useSelector(getArticleRecommendations.selectAll);
+	const recommendationsIsLoading = useSelector(
+		getArticleRecommendationsIsLoading
+	);
+
 	useEffect(() => {
 		dispatch(fetchCommentsByArticleId(articleId));
+		dispatch(fetchArticleRecommendations());
 	}, [dispatch, articleId]);
 
 	const onSendComment = useCallback(
@@ -59,19 +72,33 @@ const ArticleDetailPage = ({
 
 	if (!articleId) {
 		return (
-			<div className={classNames(styles.articlesPage, {}, [className])}>
+			<div className={classNames(styles.articleDetailPage, {}, [className])}>
 				Статья не найдена
 			</div>
 		);
 	}
 
 	return (
-		<Page className={classNames(styles.articlesPage, {}, [className])}>
+		<Page className={classNames(styles.articleDetailPage, {}, [className])}>
 			<Button onClick={onBackToList} theme={EButtonTheme.Outline}>
 				Назад
 			</Button>
 			<ArticleDetails articleId={articleId} />
-			<Text title="Комментарии" className={styles.commentTitle} />
+			<Text
+				size={ETextSize.L}
+				title="Рекомендуем"
+				className={styles.recommendationsTitle}
+			/>
+			<ArticleList
+				articles={recommendations}
+				isLoading={recommendationsIsLoading}
+				className={styles.recommendations}
+			/>
+			<Text
+				size={ETextSize.L}
+				title="Комментарии"
+				className={styles.commentTitle}
+			/>
 			<AddCommentForm onSendComment={onSendComment} />
 			<CommentList isLoading={commentsIsLoading} comments={comments} />
 		</Page>

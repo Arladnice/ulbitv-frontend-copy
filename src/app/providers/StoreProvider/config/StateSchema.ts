@@ -10,7 +10,10 @@ import { ILoginSchema } from "features/AuthByUsername";
 import { IUserSchema } from "entities/User";
 import { IProfileSchema } from "entities/Profile";
 import { IArticleDetailsSchema } from "entities/Article";
-import { IArticleDetailsCommentsSchema } from "pages/ArticleDetailPage/model/types/articleDetailsCommentsSchema";
+import {
+	IArticleDetailsCommentsSchema,
+	IArticleDetailsRecommendationsSchema,
+} from "pages/ArticleDetailPage";
 import { IAddNewComment } from "features/AddNewComment";
 import { IArticlesPageSchema } from "pages/ArticlesPage";
 import { IPageSchema } from "widgets/Page";
@@ -23,6 +26,7 @@ export interface IStateSchema {
 	profile?: IProfileSchema;
 	articleDetails?: IArticleDetailsSchema;
 	articleDetailsComments?: IArticleDetailsCommentsSchema;
+	articleDetailsRecommendations?: IArticleDetailsRecommendationsSchema;
 	addNewComment?: IAddNewComment;
 	articlePage?: IArticlesPageSchema;
 }
