@@ -7,12 +7,13 @@ import {
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import CopyPlugin from "copy-webpack-plugin";
 
 import type { IBuildOptions } from "./types/config";
 
 export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 	const {
-		paths: { html },
+		paths: { html, locales, buildLocales },
 		isDev,
 		apiUrl,
 		project,
@@ -31,6 +32,9 @@ export function buildPlugins(options: IBuildOptions): WebpackPluginInstance[] {
 			__IS_DEV__: JSON.stringify(isDev),
 			__API__: JSON.stringify(apiUrl),
 			__PROJECT__: JSON.stringify(project),
+		}),
+		new CopyPlugin({
+			patterns: [{ from: locales, to: buildLocales }],
 		}),
 	];
 
